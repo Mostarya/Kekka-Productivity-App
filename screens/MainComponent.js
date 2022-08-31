@@ -7,9 +7,18 @@ import {
     DrawerItemList 
 } from '@react-navigation/drawer';
 import DashboardScreen from './DashboardScreen';
+import CalendarScreen from './CalendarScreen';
+import CoinScreen from './CoinScreen';
+import NoteScreen from './NoteScreen';
+import ReminderScreen from './ReminderScreen';
+import TimeScreen from './TimeScreen';
+import TodoScreen from './TodoScreen';
+import WaterScreen from './WaterScreen';
+import WheelScreen from './WheelScreen';
 import { Icon } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -18,12 +27,12 @@ const screenOptions = {
     headerStyle: { backgroundColor: '#5637DD' }
 }
 
-const HomeNavigator = () => {
+const DashboardNavigator = () => {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen 
-                name='Home'
+                name='Dashboard'
                 component={DashboardScreen}
                 options={({ navigation }) => ({ 
                     title: 'Dashboard', 
@@ -41,17 +50,41 @@ const HomeNavigator = () => {
     )
 };
 
-const AboutNavigator = () => {
+const NoteNavigator = () => {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen 
-                name='About'
-                component={AboutScreen}
-                options={({ navigation }) => ({  
+                name='Notes'
+                component={NoteScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Notes', 
                     headerLeft: () => (
                         <Icon   
-                            name='info-circle'
+                            name='sticky-o' //sticky note
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    )
+};
+
+const TodoNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+                name='To Do List'
+                component={TodoScreen}
+                options={({ navigation }) => ({ 
+                    title: 'To Do List', 
+                    headerLeft: () => (
+                        <Icon   
+                            name='check'
                             type='font-awesome'
                             iconStyle={styles.stackIcon}
                             onPress={() => navigation.toggleDrawer()}
@@ -63,18 +96,18 @@ const AboutNavigator = () => {
     );
 };
 
-const ContactNavigator = () => {
+const CalendarNavigator = () => {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen 
                 name='Contact'
-                component={ContactScreen}
+                component={CalendarScreen}
                 options={({ navigation }) => ({ 
-                    title: 'Contact Us', 
+                    title: 'Calendar', 
                     headerLeft: () => (
                         <Icon   
-                            name='address-card'
+                            name='calendar'
                             type='font-awesome'
                             iconStyle={styles.stackIcon}
                             onPress={() => navigation.toggleDrawer()}
@@ -86,21 +119,18 @@ const ContactNavigator = () => {
     );
 };
 
-const DirectoryNavigator = () => {
+const TimeNavigator = () => {
     const Stack = createStackNavigator();
     return (
-        <Stack.Navigator
-            initialRouteName='Directory'
-            screenOptions={screenOptions}
-        >
-            <Stack.Screen
-                name='Directory'
-                component={DirectoryScreen}
-                options={({ navigation }) => ({
-                    title: 'Campsite Directory',
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+                name='Time Tracker'
+                component={TimeScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Time Tracker', 
                     headerLeft: () => (
-                        <Icon
-                            name='list'
+                        <Icon   
+                            name='check' //clock
                             type='font-awesome'
                             iconStyle={styles.stackIcon}
                             onPress={() => navigation.toggleDrawer()}
@@ -108,11 +138,96 @@ const DirectoryNavigator = () => {
                     )
                 })}
             />
-            <Stack.Screen
-                name='CampsiteInfo'
-                component={CampsiteInfoScreen}
-                options={({ route }) => ({
-                    title: route.params.campsite.name
+        </Stack.Navigator>
+    );
+};
+
+const WaterNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+                name='Water Tracker'
+                component={WaterScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Water Tracker', 
+                    headerLeft: () => (
+                        <Icon   
+                            name='tint'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const WheelNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+                name='Decision Wheel'
+                component={WheelScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Decision Wheel', 
+                    headerLeft: () => (
+                        <Icon   
+                            name='circle-o'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const CoinNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+                name='Coin Flip'
+                component={CoinScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Coin Flip', 
+                    headerLeft: () => (
+                        <Icon   
+                            name='circle' // if no coin icon
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const ReminderNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+                name='Reminders'
+                component={ReminderScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Reminders', 
+                    headerLeft: () => (
+                        <Icon   
+                            name='bell-o'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
                 })}
             />
         </Stack.Navigator>
@@ -123,11 +238,11 @@ const CustomDrawerContent = (props) => (
     <DrawerContentScrollView {...props}>
         <View style={styles.drawerHeader}>
             <View style={{ flex: 1 }}>
-                <Image source={logo} style={styles.drawerImage} />
+                <Image /*source={logo}*/ style={styles.drawerImage} />
             </View>
 
             <View style={{ flex: 2 }}>
-                <Text style={styles.drawerHeaderText}>NuCamp</Text>
+                <Text style={styles.drawerHeaderText}>Kekka</Text>
             </View>
         </View>
         <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
@@ -135,14 +250,14 @@ const CustomDrawerContent = (props) => (
 );
 
 const Main = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchCampsites());
-        dispatch(fetchPromotions());
-        dispatch(fetchPartners());
-        dispatch(fetchComments());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(fetchCampsites());
+    //     dispatch(fetchPromotions());
+    //     dispatch(fetchPartners());
+    //     dispatch(fetchComments());
+    // }, [dispatch]);
 
     return (
         <View 
@@ -153,15 +268,15 @@ const Main = () => {
             }}
         >
             <Drawer.Navigator
-                initialRouteName='Home'
+                initialRouteName='Dashboard'
                 drawerContent={CustomDrawerContent}
                 drawerStyle={{ backgroundColor: '#CEC8FF' }}
             >
                 <Drawer.Screen  
                     name='Home'
-                    component={HomeNavigator}
+                    component={DashboardNavigator}
                     options={{ 
-                        title: 'Home',
+                        title: 'Dashboard',
                         drawerIcon: ({ color }) => (
                             <Icon 
                                 name='home'
@@ -174,10 +289,10 @@ const Main = () => {
                     }}
                 />
                 <Drawer.Screen  
-                    name='Directory'
-                    component={DirectoryNavigator}
+                    name='To Do'
+                    component={TodoNavigator}
                     options={{ 
-                        title: 'Campsite Directory', 
+                        title: 'To Do List', 
                         drawerIcon: ({ color }) => (
                             <Icon 
                                 name='list'
@@ -190,13 +305,13 @@ const Main = () => {
                     }}
                 />
                 <Drawer.Screen  
-                    name='About'
-                    component={AboutNavigator}
+                    name='Notes'
+                    component={NoteNavigator}
                     options={{
-                        title: 'About', 
+                        title: 'Notes', 
                         drawerIcon: ({ color }) => (
                             <Icon 
-                                name='info-circle'
+                                name='sticky-o'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
@@ -206,13 +321,93 @@ const Main = () => {
                     }}
                 />
                 <Drawer.Screen  
-                    name='Contact'
-                    component={ContactNavigator}
+                    name='Calendar'
+                    component={CalendarNavigator}
                     options={{ 
-                        title: 'Contact Us', 
+                        title: 'Calendar', 
                         drawerIcon: ({ color }) => (
                             <Icon 
-                                name='address-card'
+                                name='calendar'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen  
+                    name='Time'
+                    component={TimeNavigator}
+                    options={{ 
+                        title: 'Time Tracker', 
+                        drawerIcon: ({ color }) => (
+                            <Icon 
+                                name='clock' 
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen  
+                    name='Water'
+                    component={WaterNavigator}
+                    options={{ 
+                        title: 'Water Tracker', 
+                        drawerIcon: ({ color }) => (
+                            <Icon 
+                                name='tint'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen  
+                    name='Reminders'
+                    component={ReminderNavigator}
+                    options={{ 
+                        title: 'Reminders', 
+                        drawerIcon: ({ color }) => (
+                            <Icon 
+                                name='bell-o'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen  
+                    name='Decision Wheel'
+                    component={WheelNavigator}
+                    options={{ 
+                        title: 'Decision Wheel', 
+                        drawerIcon: ({ color }) => (
+                            <Icon 
+                                name='circle-o'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen  
+                    name='Coin Flip'
+                    component={CoinNavigator}
+                    options={{ 
+                        title: 'Coin Flip', 
+                        drawerIcon: ({ color }) => (
+                            <Icon 
+                                name='circle'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
