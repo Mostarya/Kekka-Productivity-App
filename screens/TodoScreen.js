@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import {Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+    Keyboard, 
+    KeyboardAvoidingView, 
+    StyleSheet, 
+    Text, 
+    TextInput, 
+    TouchableOpacity, 
+    View
+} from 'react-native';
+import { CheckBox } from 'react-native-elements';
 import Task from '../features/to do list/Task';
 
 
@@ -27,12 +36,15 @@ const TodoScreen = () => {
                     {/* Where tasks will go */}
                     {taskItems.map((item, index) => {
                         return (
-                            <TouchableOpacity 
-                                key={index} 
-                                onPress={() => completeTask(index)}
-                            >
-                                <Task text={item} />
-                            </TouchableOpacity>
+                            <View>
+                                <CheckBox 
+                                    key={index} 
+                                    onPress={() => completeTask(index)}
+                                />
+                                <TouchableOpacity>
+                                    <Task text={item} />
+                                </TouchableOpacity>
+                            </View>
                         )
                     })}
                 </View>
