@@ -1,41 +1,31 @@
 import React, { useState } from 'react';
 import {Alert, StyleSheet, Text, View} from 'react-native';
 import { FAB } from 'react-native-elements';
-
-
+import { increment, decrement } from '../features/water tracker/WaterSlice';
+import {useSelector, useDispatch} from 'react-redux';
 
 
 const WaterScreen = () => {
-    const [counter, setCounter] = useState(0);
+    const count = useSelector((state) => state.counter.value);
+    const dispatch = useDispatch();
     
-    const increment = () => {
-        setCounter(counter + 1);
-    };
-
-    const decrement = () => {
-        if ( counter > 0 ) {
-            setCounter(counter - 1);
-        } else {
-            Alert.alert('You cannot have less than 0 waters a day.');
-        }
-    };
 
     return (
         <View style={styles.container}>
             <View style={styles.droplet}>
-                <Text>{counter}</Text>
+                <Text>{count}</Text>
             </View>
             <FAB 
                 style={styles.incr}
                 small
                 icon='plus'
-                onPress={increment}
+                onPress={() => dispatch(increment())}
             />
             <FAB 
                 style={styles.decr}
                 small
                 icon='minus'
-                onPress={decrement}
+                onPress={() => dispatch(decrement())}
             />
         </View>
     )
