@@ -1,8 +1,8 @@
 import { ScrollView, Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useSelector } from 'react-redux';
-import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
+import { Agenda } from 'react-native-calendars';
 
 
 const FeaturedItem = (props) => {
@@ -14,42 +14,36 @@ const FeaturedItem = (props) => {
     if(props.errMess) {
         return (
             <View>
-                <Text>{props.errMess}</Text>
+                <Text 
+                    >{props.errMess}</Text>
             </View>
         );
     }
 
     if (item) {
         return (
-            <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={{ uri: baseUrl + item.image }}>
-                    <View style={{ justifyContent: 'center', flex: 1 }}>
-                        <Text
-                            style={{
-                                color: 'white',
-                                textAlign: 'center',
-                                fontSize: 20
-                            }}
-                        >
-                            {item.name}
+            <ScrollView>
+                <Card containerStyle={{ padding: 0 }}>
+                    <View 
+                        style={{
+                            color: 'white',
+                            textAlign: 'center',
+                            fontSize: 20
+                        }}>
+                        <Text style={{ margin: 20 }}>
+                            {item.title}
                         </Text>
                     </View>
-                </Card.Image>
-                <Text style={{ margin: 20 }}>{item.description}</Text>
-            </Card>
+                </Card>
+            </ScrollView>
         );
     }
     return <View />;
 };
 
 const DashboardScreen = () => {
-    // const campsites = useSelector((state) => state.campsites);
-    // const promotions = useSelector((state) => state.promotions);
-    // const partners = useSelector((state) => state.partners);
-
-    // const featCampsite = campsites.campsitesArray.find((item) => item.featured);
-    // const featPromotion =  promotions.promotionsArray.find((item) => item.featured);
-    // const featPartner = partners.partnersArray.find((item) => item.featured);
+    const water = useSelector((state) => counter.state.value);
+    // const agenda = useSelector((state) => state.agenda);
 
     return (
         <ScrollView>
@@ -57,13 +51,18 @@ const DashboardScreen = () => {
                 item ={featCampsite} 
                 isLoading={campsites.isLoading}
                 errMess={campsites.errMess}
-            />
+            /> */}
             <FeaturedItem 
-                item ={featPromotion}  
-                isLoading={promotions.isLoading}
-                errMess={promotions.errMess}
+                item ={water}  
+                isLoading={water.isLoading}
+                errMess={water.errMess}
             />
-            <FeaturedItem 
+            <Agenda 
+                renderItem={(item, agenda) => {
+                    return <View />;
+                }}
+            />
+            {/* <FeaturedItem 
                 item ={featPartner}  
                 isLoading={partners.isLoading}
                 errMess={partners.errMess}

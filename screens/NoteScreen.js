@@ -68,13 +68,13 @@ const AllNotesNavigator = () => {
 };
 
 const NoteScreen = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(fetchCreateNote());
-    //     dispatch(fetchAllNotes());
-    //     dispatch(fetchNote());
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchCreateNote());
+        dispatch(fetchAllNotes());
+        dispatch(fetchNote());
+    }, [dispatch]);
 
     return (
         <View 
@@ -91,7 +91,7 @@ const NoteScreen = () => {
             >
                 <Drawer.Screen  
                     name='Notes'
-                    component={HomeNavigator}
+                    component={NoteNavigator}
                     options={{ 
                         title: 'Notes',
                         drawerIcon: ({ color }) => (
@@ -106,61 +106,13 @@ const NoteScreen = () => {
                     }}
                 />
                 <Drawer.Screen  
-                    name='Directory'
-                    component={DirectoryNavigator}
+                    name='All Notes'
+                    component={AllNotesNavigator}
                     options={{ 
-                        title: 'Campsite Directory', 
+                        title: 'All Notes', 
                         drawerIcon: ({ color }) => (
                             <Icon 
                                 name='list'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            />
-                        )
-                    }}
-                />
-                <Drawer.Screen  
-                    name='ReserveCampsite'
-                    component={ReservationNavigator}
-                    options={{ 
-                        title: 'Reserve Campsite', 
-                        drawerIcon: ({ color }) => (
-                            <Icon 
-                                name='tree'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            />
-                        )
-                    }}
-                />
-                <Drawer.Screen  
-                    name='About'
-                    component={AboutNavigator}
-                    options={{
-                        title: 'About', 
-                        drawerIcon: ({ color }) => (
-                            <Icon 
-                                name='info-circle'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            />
-                        )
-                    }}
-                />
-                <Drawer.Screen  
-                    name='Contact'
-                    component={ContactNavigator}
-                    options={{ 
-                        title: 'Contact Us', 
-                        drawerIcon: ({ color }) => (
-                            <Icon 
-                                name='address-card'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}

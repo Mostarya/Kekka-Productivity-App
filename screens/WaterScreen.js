@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import { FAB } from 'react-native-elements';
 import { increment, decrement } from '../features/water tracker/WaterSlice';
 import {useSelector, useDispatch} from 'react-redux';

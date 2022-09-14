@@ -6,18 +6,18 @@ import {
     DrawerContentScrollView, 
     DrawerItemList 
 } from '@react-navigation/drawer';
+import { Icon } from 'react-native-elements';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+//Screens
 import DashboardScreen from './DashboardScreen';
 import CalendarScreen from './CalendarScreen';
 import CoinScreen from './CoinScreen';
 import NoteScreen from './NoteScreen';
 import ReminderScreen from './ReminderScreen';
-import TimeScreen from './TimeScreen';
 import TodoScreen from './TodoScreen';
 import WaterScreen from './WaterScreen';
 import WheelScreen from './WheelScreen';
-import { Icon } from 'react-native-elements';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 
 
 const Drawer = createDrawerNavigator();
@@ -108,29 +108,6 @@ const CalendarNavigator = () => {
                     headerLeft: () => (
                         <Icon   
                             name='calendar'
-                            type='font-awesome'
-                            iconStyle={styles.stackIcon}
-                            onPress={() => navigation.toggleDrawer()}
-                        />
-                    )
-                })}
-            />
-        </Stack.Navigator>
-    );
-};
-
-const TimeNavigator = () => {
-    const Stack = createStackNavigator();
-    return (
-        <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen 
-                name='Time Tracker'
-                component={TimeScreen}
-                options={({ navigation }) => ({ 
-                    title: 'Time Tracker', 
-                    headerLeft: () => (
-                        <Icon   
-                            name='check' //clock
                             type='font-awesome'
                             iconStyle={styles.stackIcon}
                             onPress={() => navigation.toggleDrawer()}
@@ -250,7 +227,7 @@ const CustomDrawerContent = (props) => (
 );
 
 const Main = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     // useEffect(() => {
     //     dispatch(fetchCampsites());
@@ -328,22 +305,6 @@ const Main = () => {
                         drawerIcon: ({ color }) => (
                             <Icon 
                                 name='calendar'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            />
-                        )
-                    }}
-                />
-                <Drawer.Screen  
-                    name='Time'
-                    component={TimeNavigator}
-                    options={{ 
-                        title: 'Time Tracker', 
-                        drawerIcon: ({ color }) => (
-                            <Icon 
-                                name='clock' 
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
